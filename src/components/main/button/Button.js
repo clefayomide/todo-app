@@ -23,6 +23,7 @@ const Button = ({ input, setinput }) => {
   return (
     <>
       <button
+        data-testid="add-todo"
         className="text-white border-2 border-solid border-skyBlue rounded-br-md rounded-tr-md bg-skyBlue w-30 md:w-1/5 h-full"
         onClick={handleAddTodo}
       >

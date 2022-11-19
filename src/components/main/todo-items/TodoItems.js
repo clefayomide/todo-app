@@ -12,6 +12,7 @@ const TodoItems = ({ data, index }) => {
       <Draggable key={todo.id} draggableId={`${id}`} index={index}>
         {(provided) => (
           <div
+            data-testid="todo-item"
             className="flex justify-between items-center h-14 pl-5 pr-5 border-b border-solid border-slate-300"
             ref={provided.innerRef}
             {...provided.draggableProps}
@@ -27,6 +28,7 @@ const TodoItems = ({ data, index }) => {
               {!complete ? (
                 <input
                   type="checkbox"
+                  data-testid="incomplete"
                   className="w-full h-full cursor-pointer opacity-0"
                   value={complete}
                   onChange={() => completedTodo(id)}
@@ -40,6 +42,7 @@ const TodoItems = ({ data, index }) => {
                     fill="currentColor"
                     className="w-full h-full text-blue-500 bi bi-check2-circle cursor-pointer"
                     viewBox="0 0 16 16"
+                    data-testid="completed"
                     onClick={() => completedTodo(id)}
                   >
                     <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
@@ -49,6 +52,7 @@ const TodoItems = ({ data, index }) => {
               )}
             </div>
             <p
+              data-testid="todo"
               className={`w-4/5 md:w-5/6 pl-2 text-black ${
                 complete
                   ? "line-through dark:text-darkGrayishBlue"
@@ -62,6 +66,7 @@ const TodoItems = ({ data, index }) => {
               alt="cancel button"
               className="h-5 cursor-pointer"
               onClick={() => deleteTodo(id)}
+              data-testid="remove-todo"
             />
           </div>
         )}
