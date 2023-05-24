@@ -1,16 +1,16 @@
-import { obfuscate } from "javascript-obfuscator";
-import { readFileSync, writeFileSync } from "fs";
-import { join } from "path";
+const JavaScriptObfuscator = require("javascript-obfuscator");
+const fs = require("fs");
+const path = require("path");
 
-const buildPath = join(__dirname, "build", "static", "js");
+const buildPath = path.join(__dirname, "build", "static", "js");
 const filesToObfuscate = ["main.js", "chunk.js", "vendor.js"];
-
 const obfuscateFile = (filePath) => {
-	const code = readFileSync(filePath, "utf8");
-	const obfuscatedCode = obfuscate(code).getObfuscatedCode();
-	writeFileSync(filePath, obfuscatedCode);
+	const code = fs.readFileSync(filePath, "utf8");
+	const obfuscatedCode =
+		JavaScriptObfuscator.obfuscate(code).getObfuscatedCode();
+	fs.writeFileSync(filePath, obfuscatedCode);
 };
 
 filesToObfuscate.forEach((file) => {
-	obfuscateFile(join(buildPath, file));
+	obfuscateFile(path.join(buildPath, file));
 });
